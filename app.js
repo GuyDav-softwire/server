@@ -3,6 +3,9 @@ const express = require('express');
 const nodemailer = require('nodemailer');
 const mailjetTransport = require('nodemailer-mailjet-transport');
 const cors = require('cors');
+const handlebars = require('handlebars');
+const { promisify } = require('util');
+const fs = require('fs');
 const app = express();
 const port = 5000;
 
@@ -12,7 +15,9 @@ app.use(express.urlencoded({ limit: '25mb' }));
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     next();
-});     
+});   
+
+const readFile = promisify(fs.readFile);
 
 const transport = nodemailer.createTransport(mailjetTransport({
   auth: {
@@ -21,15 +26,21 @@ const transport = nodemailer.createTransport(mailjetTransport({
   }
 }))
 
-const mail = {
-  from: 'aridem.test01@gmail.com',
-  to: 'guy.david@softwire.com',
-  subject: 'Hello',
-  text: 'Hello World',
-  html: '<style>h1 {font-family:Comic Sans MS;}</style><h1>I love Comics Sans</h1>',
-};
-
 async function sendEmail({ email, subject, message }) {
+    let html = await readFile('emailTemplate.html', 'utf-8')
+    let template = handlebars.compile(html);
+    let data = {
+      username: 'Bora Job',
+    }
+    let htmlToSend = template(data);
+
+    const mail = {
+      from: 'aridem.test01@gmail.com',
+      to: 'guy.david@softwire.com',
+      subject: 'Parking Confirmation',
+      html: htmlToSend,
+    };
+
     try {
       const info = await transport.sendMail(mail);
       console.log(info);
