@@ -1,5 +1,7 @@
+require('dotenv').config();
 const express = require('express');
 const nodemailer = require('nodemailer');
+const mailjetTransport = require('nodemailer-mailjet-transport');
 const cors = require('cors');
 const app = express();
 const port = 5000;
@@ -12,41 +14,36 @@ app.use((req, res, next) => {
     next();
 });     
 
-function sendEmail({ email, subject, message }) {
-    return new Promise((resolve, reject) => {
-      const transporter = nodemailer.createTransport({
-        service: "gmail",
-        auth: {
-          user: "aridem.test01@gmail.com",
-          pass: "snvv jiyv mplb zgux",
-        },
-      });
-  
-      const mail_configs = {
-        from: "aridem.test01@gmail.com",
-        to: email,
-        subject: subject,
-        html: `
-        <p>${message}</p>
-        <p>Best Regards</p>
-        `,
-      };
-      transporter.sendMail(mail_configs, function (error, info) {
-        if (error) {
-          console.log(error);
-          return reject({ message: `An error has occurred` });
-        }
-        return resolve({ message: "Email sent successfully" });
-      });
-    }); 
+const transport = nodemailer.createTransport(mailjetTransport({
+  auth: {
+    apiKey: process.env.MAILJET_API_KEY,
+    apiSecret: process.env.MAILJET_SECRET_KEY,
   }
+}))
+
+const mail = {
+  from: 'aridem.test01@gmail.com',
+  to: 'guy.david@softwire.com',
+  subject: 'Hello',
+  text: 'Hello World',
+  html: '<style>h1 {font-family:Comic Sans MS;}</style><h1>I love Comics Sans</h1>',
+};
+
+async function sendEmail({ email, subject, message }) {
+    try {
+      const info = await transport.sendMail(mail);
+      console.log(info);
+    } catch (error) {
+      console.log(error)
+    }
+}
   
-  app.get("/", (req, res) => {
-    sendEmail(req.query)
-      .then((response) => res.send(response.message))
-      .catch((error) => res.status(500).send(error.message));
-  });
-  
-  app.listen(port, () => {
-    console.log(`nodemailerProject is listening at http://localhost:${port}`);
-  });
+app.get("/", (req, res) => {
+  sendEmail(req.query)
+    .then((response) => res.send(response.message))
+    .catch((error) => res.status(500).send(error.message));
+});
+
+app.listen(port, () => {
+  console.log(`nodemailerProject is listening at http://localhost:${port}`);
+});
