@@ -26,17 +26,18 @@ const transport = nodemailer.createTransport(mailjetTransport({
   }
 }))
 
-async function sendEmail({ email, subject, message }) {
+async function sendEmail({ email, name, paymentMethod }) {
     let html = await readFile('emailTemplate.html', 'utf-8')
     let template = handlebars.compile(html);
     let data = {
-      username: 'Bora Job',
+      name: name,
+      paymentMethod: paymentMethod
     }
     let htmlToSend = template(data);
 
     const mail = {
       from: 'aridem.test01@gmail.com',
-      to: 'guy.david@softwire.com',
+      to: email,
       subject: 'Parking Confirmation',
       html: htmlToSend,
     };
