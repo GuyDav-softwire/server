@@ -14,8 +14,8 @@
     "express": "^4.19.2",
     "fs": "^0.0.1-security",
     "handlebars": "^4.7.8",
-    "nodemailer": "^6.9.14",
-    "nodemailer-mailjet-transport": "^1.0.4"
+    "node-mailjet": "^6.0.4",
+    "nodemailer": "^6.9.14"
   },
   "devDependencies": {
     "dotenv": "^16.4.5"
