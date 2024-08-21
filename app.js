@@ -26,12 +26,28 @@ const transport = nodemailer.createTransport({
   }
 })
 
-async function sendEmail({ email, name, paymentMethod }) {
+async function sendEmail({ 
+  email, 
+  paymentMethod, 
+  stationName,
+  carParkName,
+  fromDateTimeString,
+  untilDateTimeString,
+  carRegistration,
+  contactDetails,
+  totalPriceInPounds,
+}) {
     let html = await readFile('emailTemplate.html', 'utf-8')
     let template = handlebars.compile(html);
     let data = {
-      name: name,
-      paymentMethod: paymentMethod
+      paymentMethod: paymentMethod,
+      stationName: stationName,
+      carParkName: carParkName,
+      fromDateTimeString: fromDateTimeString,
+      untilDateTimeString: untilDateTimeString,
+      carRegistration: carRegistration,
+      contactDetails: contactDetails,
+      totalPriceInPounds: totalPriceInPounds,
     }
     let htmlToSend = template(data);
 

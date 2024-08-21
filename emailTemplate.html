@@ -18,14 +18,15 @@
 
 <div class="email-container">
     <div class="header">
-        <p>Dear {{name}},</p>
+        <p>Dear Customer,</p>
     </div>
-    <p>This is a confirmation email for your recent booking.</p>
-    <p><strong>From:</strong> 16-08-24 13:00</p>
-    <p><strong>To:</strong> 17-08-24 9:00</p>
-    <p><strong>Registration number:</strong> AB12 CDE</p>
-    <p><strong>Amount Charged:</strong> £10.00</p>
-    <p><strong>Payment Method:</strong> {{paymentMethod}}</p>
+    <p>This is a confirmation email for your recent booking for {{carParkName}} at {{stationName}}.</p>
+    <p>From: {{fromDateTimeString}}</p>
+    <p>To: {{untilDateTimeString}}</p>
+    <p>Registration number: {{carRegistration}}</p>
+    <p>Amount Charged: £{{totalPriceInPounds}}</p>
+    <p>Payment Method: {{paymentMethod}}</p>
+    <p>Contact Details: {{contactDetails}}</p>
     <p>This is an automated email. Please do not respond.</p>
     <div class="footer">
         <p>Kind regards,</p>
