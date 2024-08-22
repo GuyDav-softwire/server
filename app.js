@@ -34,7 +34,7 @@ async function sendEmail({
   fromDateTimeString,
   untilDateTimeString,
   regEntry,
-  contactDetails,
+  contactNumber,
   totalPriceInPounds,
 }) {
     let html = await readFile('emailTemplate3.html', 'utf-8')
@@ -46,7 +46,7 @@ async function sendEmail({
       fromDateTimeString: fromDateTimeString,
       untilDateTimeString: untilDateTimeString,
       regEntry: regEntry,
-      contactDetails: contactDetails,
+      contactNumber: contactNumber,
       totalPriceInPounds: totalPriceInPounds,
       paymentMethod: paymentMethod,
     }
