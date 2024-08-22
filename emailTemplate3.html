@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="font-family: Arial, sans-serif; background-color: white; display: flex; flex-direction: column; row-gap: 20px; margin: 0; padding: 1rem 1rem;">
+    <div style="width: 90%; margin-bottom: 20px;">
+        <p>Dear Customer,</p>
+        <p>Your car parking ticket for {{stationName}} is confirmed and you can find all the details below.</p>
+    </div>
+
+    <div style="background-color: rgba(0, 0, 0, 0.05); border-radius: 5px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); width: 90%; font-size: 16px;">
+        <div style="background-color: #C10000; color: white; padding: 10px; text-align: left; font-weight: bold; font-size: 18px; border-radius: 5px 5px 0 0;">
+            Your Stay
+        </div>
+        <div style="padding: 15px; margin-bottom: -8px;">
+            <div style="font-size: 18px; font-weight: bold; margin-bottom: 10px;">
+                {{stationName}}
+            </div>
+            <div style="margin-bottom: 5px;">
+                {{carParkName}}
+            </div>
+            <div style="margin-bottom: 5px;">
+                <span style="display: inline-block; width: 50px; font-weight: bold;">From:</span> {{fromDateTimeString}}
+            </div>
+            <div style="margin-bottom: 5px;">
+                <span style="display: inline-block; width: 50px; font-weight: bold;">Until:</span> {{untilDateTimeString}}
+            </div>
+        </div>
+    </div>
+
+    <div style="background-color: rgba(0, 0, 0, 0.05); border-radius: 5px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); width: 90%; font-size: 16px; margin-top: 20px;">
+        <div style="background-color: #C10000; color: white; padding: 10px; text-align: left; font-weight: bold; font-size: 18px; border-radius: 5px 5px 0 0;">
+            Customer Information
+        </div>
+        <div style="padding: 15px; display: flex; flex-direction: column; row-gap: 1rem;">
+            <div style="display: flex; flex-direction: column; padding-bottom: 5px;">
+                <strong>Vehicle Registration Number</strong>
+                {{regEntry}}
+            </div>
+
+            <div style="display: flex; flex-direction: column; padding-bottom: 5px;">
+                <strong>Contact Number</strong>
+                {{contactDetails}}
+            </div>
+        </div>
+    </div>
+
+    <div style="background-color: rgba(0, 0, 0, 0.05); border-radius: 5px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); width: 90%; font-size: 16px; margin-top: 20px;">
+        <div style="background-color: #C10000; color: white; padding: 10px; text-align: left; font-weight: bold; font-size: 18px; border-radius: 5px 5px 0 0;">
+            E-receipt
+        </div>
+        <div style="padding: 0 15px;">
+            <p>Your receipt is attached.</p>
+            <p>
+                You'll need <a style="color: black;" href="https://get.adobe.com/uk/reader/">Adobe Reader</a> or another compatible PDF reader to view and print your receipt.
+            </p>
+            <p>Should something go wrong, you can always re-download them, or contact our customer service. <a style="color: black;" href="https://www.lner.co.uk/support/get-in-touch/">Get in touch</a></p>
+        </div>
+    </div>
+
+    <div style="background-color: rgba(0, 0, 0, 0.05); border-radius: 5px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); width: 90%; font-size: 16px; margin-top: 20px;">
+        <div style="background-color: #C10000; color: white; padding: 10px; text-align: left; font-weight: bold; font-size: 18px; border-radius: 5px 5px 0 0;">
+            Payment Information
+        </div>
+        <div style="padding: 0 15px;">
+            <p><strong>Total Payment:</strong> £{{totalPriceInPounds}}</p>
+            <p>Payment Method: {{paymentMethod}}</p>
+            <p>Card Number: **** **** **** 5555</p>
+        </div>
+    </div>
+
+    <div style="background-color: rgba(0, 0, 0, 0.05); border-radius: 5px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); width: 90%; font-size: 16px; margin-top: 20px;">
+        <div style="background-color: #C10000; color: white; padding: 10px; text-align: left; font-weight: bold; font-size: 18px; border-radius: 5px 5px 0 0;">
+            FAQ
+        </div>
+        <div style="padding: 0 15px;">
+            <ul style="display: flex; flex-direction: column; row-gap: 1rem;">
+                <li><a style="color: black;" href="https://test.parking.softwire-lner-dev.co.uk/">How to get to the carpark?</a></li>
+                <li><a style="color: black;" href="https://test.parking.softwire-lner-dev.co.uk/">How can I use the car park?</a></li>
+                <li><a style="color: black;" href="https://test.parking.softwire-lner-dev.co.uk/">I can't find my car parking space?</a></li>
+            </ul>
+            <p>Our full list of FAQs can be found <a style="color: red;" href="https://test.parking.softwire-lner-dev.co.uk/">here</a></p>
+        </div>
+    </div>
+
+    <div style="width: 90%; margin-top: 30px;">
+        <p><strong>Kind regards,</strong></p>
+        <p><strong>The LNER TEAM</strong></p>
+        <img style="width: 100px;" src="https://www.petrotter.com/wp-content/uploads/2020/03/LNER-Logo.png" alt="LNER Logo"/>
+        <div style="font-size: 12px; margin-top: 40px;">
+            <p>
+                Please do not reply directly to this email. This email was sent from a notification-only address that cannot accept incoming mail. <a href="https://test.parking.softwire-lner-dev.co.uk/">If you have questions or need assistance, ask us here.</a>
+            </p>
+            <p>
+                London North Eastern Railway Limited. Registered in England No.04659712. Registered Office: West Offices, Station Rise, York YO1 6GA.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

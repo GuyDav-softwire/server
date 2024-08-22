@@ -33,21 +33,22 @@ async function sendEmail({
   carParkName,
   fromDateTimeString,
   untilDateTimeString,
-  carRegistration,
+  regEntry,
   contactDetails,
   totalPriceInPounds,
 }) {
-    let html = await readFile('emailTemplate.html', 'utf-8')
+    let html = await readFile('emailTemplate3.html', 'utf-8')
     let template = handlebars.compile(html);
+    console.log(regEntry);
     let data = {
-      paymentMethod: paymentMethod,
       stationName: stationName,
       carParkName: carParkName,
       fromDateTimeString: fromDateTimeString,
       untilDateTimeString: untilDateTimeString,
-      carRegistration: carRegistration,
+      regEntry: regEntry,
       contactDetails: contactDetails,
       totalPriceInPounds: totalPriceInPounds,
+      paymentMethod: paymentMethod,
     }
     let htmlToSend = template(data);
 
