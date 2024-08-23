@@ -27,7 +27,7 @@ const transport = nodemailer.createTransport({
 })
 
 async function sendEmail({ 
-  email, 
+  emailAddress, 
   paymentMethod, 
   stationName,
   carParkName,
@@ -39,7 +39,6 @@ async function sendEmail({
 }) {
     let html = await readFile('emailTemplate3.html', 'utf-8')
     let template = handlebars.compile(html);
-    console.log(regEntry);
     let data = {
       stationName: stationName,
       carParkName: carParkName,
@@ -54,7 +53,7 @@ async function sendEmail({
 
     const mail = {
       from: 'aridem.test01@gmail.com',
-      to: email,
+      to: emailAddress,
       subject: 'Parking Confirmation',
       html: htmlToSend,
     };
