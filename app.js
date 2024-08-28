@@ -37,7 +37,7 @@ async function sendEmail({
   contactNumber,
   totalPriceInPounds,
 }) {
-    let html = await readFile('emailTemplate3.html', 'utf-8')
+    let html = await readFile('emailTemplate.html', 'utf-8')
     let template = handlebars.compile(html);
     let data = {
       stationName: stationName,
